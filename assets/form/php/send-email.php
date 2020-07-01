@@ -24,7 +24,7 @@ try {
     $mail->CharSet = 'UTF-8';
 
     $mail->Username = 'waislanluis@gmail.com'; // email remetente
-    $mail->Password = 'ayahuascacura'; //senha do email remetente
+    $mail->Password = 'xxxxxxx'; //senha do email remetente
     $mail->setFrom('noreply@gmail.com', 'Sistema');
 
     $mail->addAddress('waislansanches@hotmail.com', ''); // Destinatário
