@@ -24,25 +24,45 @@
 </head>
 
 <body>
-    <form id="formTelefone" class="col-md-6 offset-md-3">
+    <form id="form05" class="col-md-6 offset-md-3">
         <div class="form-row" style="display: flex; justify-content: center;">
             <div class="col-sm-12 col-md-6">
                 <label for="inputNome">Nome completo</label>
                 <input type="text" id="inputNome" class="form-control estilo-input" placeholder="Nome completo" required>
             </div>
             <div class="col-sm-12 col-md-6">
-                <label for="inputTelefone">Telefone</label>
-                <input type="text" id="inputTelefone" class="form-control estilo-input" placeholder="(00) 00000-0000" required>
+                <label for="inputEmail">Email</label>
+                <input type="email" id="inputEmail" class="form-control estilo-input" placeholder="Email" required>
             </div>
         </div>
         <div class="form-row" style="display: flex; justify-content: center;">
             <div class="col-sm-12 col-md-6">
-                <label for="inputEmail">Email</label>
-                <input type="text" id="inputEmail" class="form-control estilo-input" placeholder="Email" required>
+                <label for="inputTelefone">Telefone</label>
+                <input type="text" id="inputTelefone" class="form-control estilo-input" placeholder="(00) 00000-0000" required>
             </div>
             <div class="col-sm-12 col-md-6">
                 <label for="inputMensagem">Mensagem</label>
                 <input type="text" id="inputMensagem" class="form-control estilo-input" placeholder="Mensagem" required>
+            </div>
+        </div>
+        <div class="form-row" style="display: flex; justify-content: start;">
+            <div class="col-sm-12 col-md-6">
+                <label class="label" style="position: relative !important;">Como nos conheceu?</label>
+                <label class="radio-container m-l-10" style="position: relative !important;">
+                    <input type="radio" name="radio" id="radioGoogle" value="google">
+                    <span class="checkmark"></span>
+                    Google
+                </label>
+                <label class="radio-container m-l-10" style="position: relative !important;">
+                    <input type="radio" name="radio" id="radioFacebook" value="facebook">
+                    <span class="checkmark"></span>
+                    Facebook
+                </label>
+                <label class="radio-container m-l-10" style="position: relative !important;">
+                    <input type="radio" name="radio" id="radioIndicacao" value="indicacao">
+                    <span class="checkmark"></span>
+                    Indicação
+                </label>
             </div>
         </div>
         <div class="form-row" style="display: flex; justify-content: center; margin-top: 10px;">

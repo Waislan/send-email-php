@@ -60,14 +60,31 @@ function aplicarFocusIn(){
     })
 }
 
-function aplicarFocusOut(){
-    $('#inputNome').focusout(function (e) {
-        if (!validaNome($(e.target).val())) {
-            $(e.target).addClass('form-invalido');
-        } else {
-            $(e.target).removeClass('form-invalido');
+function validaData(data){
+
+    if (data != ''){
+        data = data.split('-');
+        var ano = data[0];
+
+        if ((2020 - ano) >= 18 && (2020 - ano) <= 100){
+            return true;
         }
-    })
+        
+    }
+    return false;
+}
+
+function aplicarFocusOut(){
+
+    if ($('#inputNome').length){
+        $('#inputNome').focusout(function (e) {
+            if (!validaNome($(e.target).val())) {
+                $(e.target).addClass('form-invalido');
+            } else {
+                $(e.target).removeClass('form-invalido');
+            }
+        })
+    }
 
     if ($('#inputTelefone').length){
         $('#inputTelefone').mask("(00) 00000-0000").focusout(function (event) {
@@ -79,21 +96,35 @@ function aplicarFocusOut(){
         })
     }
 
-    $('#inputEmail').focusout(function (e) {
-        if (!validaEmail($(e.target).val())) {
-            $(e.target).addClass('form-invalido');
-        } else {
-            $(e.target).removeClass('form-invalido');
-        }
-    })
+    if ($('#inputEmail').length){
+        $('#inputEmail').focusout(function (e) {
+            if (!validaEmail($(e.target).val())) {
+                $(e.target).addClass('form-invalido');
+            } else {
+                $(e.target).removeClass('form-invalido');
+            }
+        })
+    }
 
-    $('#inputMensagem').focusout(function (e) {
-        if (!validaMensagem($(e.target).val())) {
-            $(e.target).addClass('form-invalido');
-        } else {
-            $(e.target).removeClass('form-invalido');
-        }
-    })
+    if ($('#inputDataDeNascimento').length){
+        $('#inputDataDeNascimento').focusout(function (e) {
+            if (!validaData($(e.target).val())) {
+                $(e.target).addClass('form-invalido');
+            } else {
+                $(e.target).removeClass('form-invalido');
+            }
+        })
+    }
+
+    if ($('#inputMensagem').length){
+        $('#inputMensagem').focusout(function (e) {
+            if (!validaMensagem($(e.target).val())) {
+                $(e.target).addClass('form-invalido');
+            } else {
+                $(e.target).removeClass('form-invalido');
+            }
+        })
+    }
 }
 
 function verificarRadioBox(){
@@ -112,18 +143,39 @@ function verificarRadioBox(){
 }
 
 function camposValidos(campos){
-    if (campos.length == 4){
-        if (validaNome(campos[0]) && validaEmail(campos[1]) && validaMensagem(campos[2])){
+
+    if (campos.length == 2){
+
+        if (validaEmail(campos[0])){
             return true;
         } else {
             return false;
         }
+
+    } else if (campos.length == 3){
+
+        if (validaNome(campos[0]) && validaEmail(campos[1])){
+            return true;
+        } else {
+            return false;
+        }
+
+    } else if (campos.length == 4){
+
+        if (validaNome(campos[0]) && validaEmail(campos[1]) && validaTelefone(campos[2])){
+            return true;
+        } else {
+            return false;
+        }
+
     } else if (campos.length == 5 || campos.length == 6){
-        if (validaNome(campos[0]) && validaTelefone(campos[1]) && validaEmail(campos[2]) && validaMensagem(campos[3])){
+
+        if (validaNome(campos[0]) && validaEmail(campos[1]) && validaTelefone(campos[2]) && validaMensagem(campos[3])){
             return true;
         } else {
             return false;
         }
+
     } else {
         console.log(campos.length);
         return false;
@@ -131,70 +183,43 @@ function camposValidos(campos){
 }
 
 function backendFormulario(campos){
-    if (campos.length == 4){
-        $.post('assets/form-contato/php/send-email.php', {
-            data: campos
-        }, function(retorno){
-            switch(retorno){
-                case 'true':
-                    alert('Eviado com sucesso!');
-                    window.location.href = 'https://ofertadeveiculos.com.br';
-                    break;
-                default:
-                    mostrarEsconderSpinner(true);
-                    alert('Ops, houve um erro!');
-                    console.log(retorno);
-                    break;
-            }
-        })
-    } else if (campos.length == 5){
-        $.post('assets/form-contato/php/send-email.php', {
-            data: campos
-        }, function(retorno){
-            switch(retorno){
-                case 'true':
-                    alert('Eviado com sucesso!');
-                    window.location.href = 'https://ofertadeveiculos.com.br';
-                    break;
-                default:
-                    mostrarEsconderSpinner(true);
-                    alert('Ops, houve um erro!');
-                    break;
-            }
-        })
-    } else if (campos.length == 6){
-        $.post('assets/form-contato/php/send-email.php', {
-            data: campos
-        }, function(retorno){
-            switch(retorno){
-                case 'true':
-                    alert('Eviado com sucesso!');
-                    window.location.href = 'https://ofertadeveiculos.com.br';
-                    break;
-                default:
-                    mostrarEsconderSpinner(true);
-                    alert('Ops, houve um erro!');
-                    break;
-            }
-        })
-    } else {
-        console.log(campos.length);
-    }
+
+    $.post('assets/form-contato/php/send-email.php', {
+        data: campos
+    }, function(retorno){
+        switch(retorno){
+            case 'true':
+                alert('Eviado com sucesso!');
+                window.location.href = 'https://ofertadeveiculos.com.br';
+                break;
+            default:
+                mostrarEsconderSpinner(true);
+                alert('Ops, houve um erro!');
+                console.log(retorno);
+                break;
+        }
+    })
+}
+
+function trataData(data) {
+    
+    var auxiliar = data.replace('-', '/');
+
+    console.log(auxiliar)
+    return data;
 }
 
 function aplicarOnSubmit(){
 
-    $('#formSimples').submit(function(e){
+    $('#form01').submit(function(e){
         mostrarEsconderSpinner(false);
 
         e.preventDefault();
         
-        var nome = $('#inputNome').val();
         var email = $('#inputEmail').val();
-        var mensagem = $('#inputMensagem').val();
         var origem = window.location.href;
-        
-        campos = [nome, email, mensagem, origem];
+
+        var campos = [email, origem];
 
         if(camposValidos(campos)){
             backendFormulario(campos);
@@ -204,18 +229,16 @@ function aplicarOnSubmit(){
         }
     })
 
-    $('#formTelefone').submit(function(e){
+    $('#form02').submit(function(e){
         mostrarEsconderSpinner(false);
 
         e.preventDefault();
         
         var nome = $('#inputNome').val();
-        var telefone = $('#inputTelefone').val();
         var email = $('#inputEmail').val();
-        var mensagem = $('#inputMensagem').val();
         var origem = window.location.href;
-        
-        campos = [nome, telefone, email, mensagem, origem];
+
+        var campos = [nome, email, origem];
 
         if(camposValidos(campos)){
             backendFormulario(campos);
@@ -225,19 +248,60 @@ function aplicarOnSubmit(){
         }
     })
 
-    $('#formRadio').submit(function(e){
+    $('#form03').submit(function(e){
         mostrarEsconderSpinner(false);
 
         e.preventDefault();
         
         var nome = $('#inputNome').val();
-        var telefone = $('#inputTelefone').val();
         var email = $('#inputEmail').val();
+        var telefone = $('#inputTelefone').val();
+        var origem = window.location.href;
+        
+        campos = [nome, email, telefone, origem];
+
+        if(camposValidos(campos)){
+            backendFormulario(campos);
+        } else {
+            mostrarEsconderSpinner(true);
+            alert('Por favor, preencha corretamente o formulário.');
+        }
+    })
+
+    $('#form04').submit(function(e){
+        mostrarEsconderSpinner(false);
+
+        e.preventDefault();
+        
+        var nome = $('#inputNome').val();
+        var email = $('#inputEmail').val();
+        var telefone = $('#inputTelefone').val();
         var mensagem = $('#inputMensagem').val();
         var origem = window.location.href;
+        
+        campos = [nome, email, telefone, mensagem, origem];
+
+        if(camposValidos(campos)){
+            backendFormulario(campos);
+        } else {
+            mostrarEsconderSpinner(true);
+            alert('Por favor, preencha corretamente o formulário.');
+        }
+    })
+
+    $('#form05').submit(function(e){
+        mostrarEsconderSpinner(false);
+
+        e.preventDefault();
+        
+        var nome = $('#inputNome').val();
+        var email = $('#inputEmail').val();
+        var telefone = $('#inputTelefone').val();
+        var mensagem = $('#inputMensagem').val();
         var comoConheceu = verificarRadioBox();
+        var origem = window.location.href;
 
-        var campos = [nome, telefone, email, mensagem, comoConheceu, origem];
+        var campos = [nome, email, telefone, mensagem, comoConheceu, origem];
 
         if(camposValidos(campos)){
             backendFormulario(campos);
@@ -245,7 +309,31 @@ function aplicarOnSubmit(){
             mostrarEsconderSpinner(true);
             alert('Por favor, preencha corretamente o formulário.');
         }
-    })    
+    })
+
+    $('#form06').submit(function(e){
+        mostrarEsconderSpinner(false);
+
+        e.preventDefault();
+        
+        var nome = $('#inputNome').val();
+        var email = $('#inputEmail').val();
+        var telefone = $('#inputTelefone').val();
+        var dataDeNascimento = trataData($('#inputDataDeNascimento').val());
+        var mensagem = $('#inputMensagem').val();
+        var comoConheceu = verificarRadioBox();
+        var origem = window.location.href;
+
+        var campos = [nome, email, telefone, dataDeNascimento, mensagem, comoConheceu, origem];
+
+        if(camposValidos(campos)){
+            backendFormulario(campos);
+        } else {
+            mostrarEsconderSpinner(true);
+            alert('Por favor, preencha corretamente o formulário.');
+        }
+    })
+    
 }
 
 $(document).ready(function(){
