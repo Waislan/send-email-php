@@ -27,55 +27,62 @@ try {
     $mail->Password = ''; // senha do email remetente
     $mail->setFrom('noreply@gmail.com', 'Sistema');
 
-    $mail->addAddress('waislanluis@gmail.com', ''); // Destinatário
+    $mail->addAddress('', ''); // Destinatário
     $mail->isHTML(true);
     $mail->Subject = 'Novo Contato do Site';
 
     
-     if (sizeof($dados) == 2){
+    if ($dados[0] == 'form00'){
         $mail->Body  = 'Novo contato!<br />' .
-                    'Email: '. $dados[0] .'<br />' .
-                    'Link de origem: '. $dados[1];
-                        
-    } else if (sizeof($dados) == 3){
-        $mail->Body = 'Novo contato!<br />' .
-                    'Nome: '. $dados[0] . '<br />' .
-                    'Email: '. $dados[1] .'<br />' .
-                    'Link de origem: '. $dados[3];
-
-    } else if (sizeof($dados) == 4){
-        $mail->Body = 'Novo contato!<br />' .
-                    'Nome: '. $dados[0] . '<br />' .
-                    'Email: '. $dados[1] .'<br />' .
-                    'Telefone: '. $dados[2] .'<br />' .
-                    'Link de origem: '. $dados[3];
-
-    } else if (sizeof($dados) == 5){
-        $mail->Body = 'Novo contato!<br />' .
-                    'Nome: '. $dados[0] . '<br />' .
-                    'Email: '. $dados[1] .'<br />' .
-                    'Telefone: '. $dados[2] . '<br />' .
+                    'Nome: '. $dados[1] . '<br />' .
+                    'Email: '. $dados[2] .'<br />' .
                     'Mensagem: '. $dados[3] .'<br />' .
                     'Link de origem: '. $dados[4];
-
-    } else if (sizeof($dados) == 6){
-        $mail->Body = 'Novo contato!<br />' .
-                    'Nome: '. $dados[0] . '<br />' .
+                        
+    } else if ($dados[0] == 'form01'){
+        $mail->Body  = 'Novo contato!<br />' .
                     'Email: '. $dados[1] .'<br />' .
-                    'Telefone: '. $dados[2] . '<br />' .
-                    'Mensagem: '. $dados[3] .'<br />' .
-                    'Como conheceu: '. $dados[4] .'<br />' .
+                    'Link de origem: '. $dados[2];
+                        
+    } else if ($dados[0] == 'form02'){
+        $mail->Body = 'Novo contato!<br />' .
+                    'Nome: '. $dados[1] . '<br />' .
+                    'Email: '. $dados[2] .'<br />' .
+                    'Link de origem: '. $dados[3];
+
+    } else if ($dados[0] == 'form03'){
+        $mail->Body = 'Novo contato!<br />' .
+                    'Nome: '. $dados[1] . '<br />' .
+                    'Email: '. $dados[2] .'<br />' .
+                    'Telefone: '. $dados[3] .'<br />' .
+                    'Link de origem: '. $dados[4];
+
+    } else if ($dados[0] == 'form04'){
+        $mail->Body = 'Novo contato!<br />' .
+                    'Nome: '. $dados[1] . '<br />' .
+                    'Email: '. $dados[2] .'<br />' .
+                    'Telefone: '. $dados[3] . '<br />' .
+                    'Mensagem: '. $dados[4] .'<br />' .
                     'Link de origem: '. $dados[5];
 
-    } else if (sizeof($dados) == 7){
+    } else if ($dados[0] == 'form05'){
         $mail->Body = 'Novo contato!<br />' .
-                    'Nome: '. $dados[0] . '<br />' .
-                    'Email: '. $dados[1] .'<br />' .
-                    'Telefone: '. $dados[2] . '<br />' .
-                    'Data de nascimento: '. $dados[3] . '<br />' .
+                    'Nome: '. $dados[1] . '<br />' .
+                    'Email: '. $dados[2] .'<br />' .
+                    'Telefone: '. $dados[3] . '<br />' .
                     'Mensagem: '. $dados[4] .'<br />' .
                     'Como conheceu: '. $dados[5] .'<br />' .
                     'Link de origem: '. $dados[6];
+
+    } else if ($dados[0] == 'form06'){
+        $mail->Body = 'Novo contato!<br />' .
+                    'Nome: '. $dados[1] . '<br />' .
+                    'Email: '. $dados[2] .'<br />' .
+                    'Telefone: '. $dados[3] . '<br />' .
+                    'Data de nascimento: '. $dados[4] . '<br />' .
+                    'Mensagem: '. $dados[5] .'<br />' .
+                    'Como conheceu: '. $dados[6] .'<br />' .
+                    'Link de origem: '. $dados[7];
 
     } else {
         echo 'erro';

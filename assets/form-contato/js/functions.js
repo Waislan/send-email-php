@@ -61,15 +61,25 @@ function aplicarFocusIn(){
 }
 
 function validaData(data){
-
+    
     if (data != ''){
-        data = data.split('-');
-        var ano = data[0];
 
-        if ((2020 - ano) >= 18 && (2020 - ano) <= 100){
-            return true;
+        if (data.includes('-')){
+            data = data.split('-');
+            var ano = data[0];
+
+            if ((2020 - ano) >= 18 && (2020 - ano) <= 100){
+                return true;
+            }
         }
-        
+        else {
+            data = data.split('/');
+            var ano = data[2];
+
+            if ((2020 - ano) >= 18 && (2020 - ano) <= 100){
+                return true;
+            }
+        } 
     }
     return false;
 }
@@ -144,40 +154,56 @@ function verificarRadioBox(){
 
 function camposValidos(campos){
 
-    if (campos.length == 2){
+    if (campos[0].localeCompare('form00') == 0){
 
-        if (validaEmail(campos[0])){
+        if (validaNome(campos[1]) && validaEmail(campos[2]) && validaMensagem(campos[3])){
             return true;
         } else {
             return false;
         }
 
-    } else if (campos.length == 3){
-
-        if (validaNome(campos[0]) && validaEmail(campos[1])){
+    } else if (campos[0].localeCompare('form01') == 0){
+        
+        if (validaEmail(campos[1])){
             return true;
         } else {
             return false;
         }
 
-    } else if (campos.length == 4){
+    } else if (campos[0].localeCompare('form02') == 0){
 
-        if (validaNome(campos[0]) && validaEmail(campos[1]) && validaTelefone(campos[2])){
+        if (validaNome(campos[1]) && validaEmail(campos[2])){
             return true;
         } else {
             return false;
         }
 
-    } else if (campos.length == 5 || campos.length == 6){
+    } else if (campos[0].localeCompare('form03') == 0){
 
-        if (validaNome(campos[0]) && validaEmail(campos[1]) && validaTelefone(campos[2]) && validaMensagem(campos[3])){
+        if (validaNome(campos[1]) && validaEmail(campos[2]) && validaTelefone(campos[3])){
+            return true;
+        } else {
+            return false;
+        }
+
+    } else if (campos[0].localeCompare('form04') == 0 || campos[0].localeCompare('form05') == 0){
+
+        if (validaNome(campos[1]) && validaEmail(campos[2]) && validaTelefone(campos[3]) && validaMensagem(campos[4])){
+            return true;
+        } else {
+            return false;
+        }
+
+    } else if (campos[0].localeCompare('form06') == 0){
+
+        if (validaNome(campos[1]) && validaEmail(campos[2]) && validaTelefone(campos[3]) && validaData(campos[4]) && validaMensagem(campos[5])){
             return true;
         } else {
             return false;
         }
 
     } else {
-        console.log(campos.length);
+        //console.log(campos.length);
         return false;
     }
 }
@@ -195,7 +221,7 @@ function backendFormulario(campos){
             default:
                 mostrarEsconderSpinner(true);
                 alert('Ops, houve um erro!');
-                console.log(retorno);
+                //console.log(retorno);
                 break;
         }
     })
@@ -203,13 +229,33 @@ function backendFormulario(campos){
 
 function trataData(data) {
     
-    var auxiliar = data.replace('-', '/');
+    var auxiliar = data.replaceAll('-', '/');
 
-    console.log(auxiliar)
+    //console.log(auxiliar)
     return data;
 }
 
 function aplicarOnSubmit(){
+
+    $('#form00').submit(function(e){
+        mostrarEsconderSpinner(false);
+
+        e.preventDefault();
+        
+        var nome = $('#inputNome').val();
+        var email = $('#inputEmail').val();
+        var mensagem = $('#inputMensagem').val();
+        var origem = window.location.href;
+
+        var campos = ['form00', nome, email, mensagem, origem];
+
+        if(camposValidos(campos)){
+            backendFormulario(campos);
+        } else {
+            mostrarEsconderSpinner(true);
+            alert('Por favor, preencha corretamente o formulário.');
+        }
+    })
 
     $('#form01').submit(function(e){
         mostrarEsconderSpinner(false);
@@ -219,7 +265,7 @@ function aplicarOnSubmit(){
         var email = $('#inputEmail').val();
         var origem = window.location.href;
 
-        var campos = [email, origem];
+        var campos = ['form01', email, origem];
 
         if(camposValidos(campos)){
             backendFormulario(campos);
@@ -238,7 +284,7 @@ function aplicarOnSubmit(){
         var email = $('#inputEmail').val();
         var origem = window.location.href;
 
-        var campos = [nome, email, origem];
+        var campos = ['form02', nome, email, origem];
 
         if(camposValidos(campos)){
             backendFormulario(campos);
@@ -258,7 +304,7 @@ function aplicarOnSubmit(){
         var telefone = $('#inputTelefone').val();
         var origem = window.location.href;
         
-        campos = [nome, email, telefone, origem];
+        campos = ['form03', nome, email, telefone, origem];
 
         if(camposValidos(campos)){
             backendFormulario(campos);
@@ -279,7 +325,7 @@ function aplicarOnSubmit(){
         var mensagem = $('#inputMensagem').val();
         var origem = window.location.href;
         
-        campos = [nome, email, telefone, mensagem, origem];
+        campos = ['form04', nome, email, telefone, mensagem, origem];
 
         if(camposValidos(campos)){
             backendFormulario(campos);
@@ -301,7 +347,7 @@ function aplicarOnSubmit(){
         var comoConheceu = verificarRadioBox();
         var origem = window.location.href;
 
-        var campos = [nome, email, telefone, mensagem, comoConheceu, origem];
+        var campos = ['form05', nome, email, telefone, mensagem, comoConheceu, origem];
 
         if(camposValidos(campos)){
             backendFormulario(campos);
@@ -324,7 +370,7 @@ function aplicarOnSubmit(){
         var comoConheceu = verificarRadioBox();
         var origem = window.location.href;
 
-        var campos = [nome, email, telefone, dataDeNascimento, mensagem, comoConheceu, origem];
+        var campos = ['form06', nome, email, telefone, dataDeNascimento, mensagem, comoConheceu, origem];
 
         if(camposValidos(campos)){
             backendFormulario(campos);
