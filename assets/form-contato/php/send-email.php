@@ -23,23 +23,15 @@ try {
     $mail->setLanguage('pt_br', 'vendor/PHPMailer/language/');
     $mail->CharSet = 'UTF-8';
 
-    $mail->Username = ''; // email remetente
-    $mail->Password = ''; // senha do email remetente
+    $mail->Username = 'waislanluis@gmail.com'; // email remetente
+    $mail->Password = 'ayahuascacura'; // senha do email remetente
     $mail->setFrom('noreply@gmail.com', 'Sistema');
 
-    $mail->addAddress('', ''); // Destinatário
+    $mail->addAddress('waislansanches@gmail.com', ''); // Destinatário
     $mail->isHTML(true);
     $mail->Subject = 'Novo Contato do Site';
-
     
-    if ($dados[0] == 'form00'){
-        $mail->Body  = 'Novo contato!<br />' .
-                    'Nome: '. $dados[1] . '<br />' .
-                    'Email: '. $dados[2] .'<br />' .
-                    'Mensagem: '. $dados[3] .'<br />' .
-                    'Link de origem: '. $dados[4];
-                        
-    } else if ($dados[0] == 'form01'){
+    if ($dados[0] == 'form01'){
         $mail->Body  = 'Novo contato!<br />' .
                     'Email: '. $dados[1] .'<br />' .
                     'Link de origem: '. $dados[2];
@@ -51,13 +43,20 @@ try {
                     'Link de origem: '. $dados[3];
 
     } else if ($dados[0] == 'form03'){
+        $mail->Body  = 'Novo contato!<br />' .
+                    'Nome: '. $dados[1] . '<br />' .
+                    'Email: '. $dados[2] .'<br />' .
+                    'Mensagem: '. $dados[3] .'<br />' .
+                    'Link de origem: '. $dados[4];
+                        
+    } else if ($dados[0] == 'form04'){
         $mail->Body = 'Novo contato!<br />' .
                     'Nome: '. $dados[1] . '<br />' .
                     'Email: '. $dados[2] .'<br />' .
                     'Telefone: '. $dados[3] .'<br />' .
                     'Link de origem: '. $dados[4];
 
-    } else if ($dados[0] == 'form04'){
+    } else if ($dados[0] == 'form05'){
         $mail->Body = 'Novo contato!<br />' .
                     'Nome: '. $dados[1] . '<br />' .
                     'Email: '. $dados[2] .'<br />' .
@@ -65,7 +64,7 @@ try {
                     'Mensagem: '. $dados[4] .'<br />' .
                     'Link de origem: '. $dados[5];
 
-    } else if ($dados[0] == 'form05'){
+    } else if ($dados[0] == 'form06'){
         $mail->Body = 'Novo contato!<br />' .
                     'Nome: '. $dados[1] . '<br />' .
                     'Email: '. $dados[2] .'<br />' .
@@ -74,7 +73,7 @@ try {
                     'Como conheceu: '. $dados[5] .'<br />' .
                     'Link de origem: '. $dados[6];
 
-    } else if ($dados[0] == 'form06'){
+    } else if ($dados[0] == 'form07'){
         $mail->Body = 'Novo contato!<br />' .
                     'Nome: '. $dados[1] . '<br />' .
                     'Email: '. $dados[2] .'<br />' .

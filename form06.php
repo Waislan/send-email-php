@@ -25,7 +25,6 @@
 
 <body>
     <form id="form06" class="col-md-6 offset-md-3">
-
         <div class="form-row" style="display: flex; justify-content: center;">
             <div class="col-sm-12 col-md-6">
                 <label for="inputNome">Nome completo</label>
@@ -36,25 +35,16 @@
                 <input type="email" id="inputEmail" class="form-control estilo-input" placeholder="Email" required>
             </div>
         </div>
-
         <div class="form-row" style="display: flex; justify-content: center;">
             <div class="col-sm-12 col-md-6">
                 <label for="inputTelefone">Telefone</label>
                 <input type="text" id="inputTelefone" class="form-control estilo-input" placeholder="(00) 00000-0000" required>
             </div>
             <div class="col-sm-12 col-md-6">
-                <label for="inputDataDeNascimento">Data de nascimento</label>
-                <input type="date" id="inputDataDeNascimento" class="form-control estilo-input" max="2100-12-31" required>
-            </div>
-        </div>
-
-        <div class="form-row" style="display: flex; justify-content: center;">
-            <div class="col-md-12">
                 <label for="inputMensagem">Mensagem</label>
                 <textarea type="text" id="inputMensagem" class="form-control estilo-input" placeholder="Mensagem" required></textarea>
             </div>
         </div>
-
         <div class="form-row" style="display: flex; justify-content: start;">
             <div class="col-sm-12 col-md-6">
                 <label class="label" style="position: relative !important;">Como nos conheceu?</label>
@@ -75,13 +65,11 @@
                 </label>
             </div>
         </div>
-
         <div class="form-row" style="display: flex; justify-content: center; margin-top: 10px;">
             <button id="btnEnviar" class="btn btn-info" type="submit">Enviar
                 <span id="spinner" class="spinner-border spinner-border-sm" role="status" hidden="true"></span>
             </button>
         </div>
-
     </form>
     
     <script src="assets/form-contato/js/functions.js"></script>
