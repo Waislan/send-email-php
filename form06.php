@@ -44,7 +44,7 @@
             </div>
             <div class="col-sm-12 col-md-6">
                 <label for="inputDataDeNascimento">Data de nascimento</label>
-                <input type="date" id="inputDataDeNascimento" class="form-control estilo-input" required>
+                <input type="date" id="inputDataDeNascimento" class="form-control estilo-input" max="2100-12-31" required>
             </div>
         </div>
 
