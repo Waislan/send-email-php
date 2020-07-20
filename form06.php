@@ -51,7 +51,7 @@
         <div class="form-row" style="display: flex; justify-content: center;">
             <div class="col-md-12">
                 <label for="inputMensagem">Mensagem</label>
-                <input type="text" id="inputMensagem" class="form-control estilo-input" placeholder="Mensagem" required>
+                <textarea type="text" id="inputMensagem" class="form-control estilo-input" placeholder="Mensagem" required></textarea>
             </div>
         </div>
 
