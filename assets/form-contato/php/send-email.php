@@ -23,11 +23,11 @@ try {
     $mail->setLanguage('pt_br', 'vendor/PHPMailer/language/');
     $mail->CharSet = 'UTF-8';
 
-    $mail->Username = 'waislanluis@gmail.com'; // email remetente
-    $mail->Password = 'ayahuascacura'; // senha do email remetente
+    $mail->Username = ''; // email remetente
+    $mail->Password = ''; // senha do email remetente
     $mail->setFrom('noreply@gmail.com', 'Sistema');
 
-    $mail->addAddress('waislansanches@gmail.com', ''); // Destinatário
+    $mail->addAddress('', ''); // Destinatário
     $mail->isHTML(true);
     $mail->Subject = 'Novo Contato do Site';
     

@@ -143,7 +143,7 @@ function verificarRadioBox(){
         return 'Indicação';
     }
     else {
-        return 'erro';
+        return 'Não informado';
     }
 }
 
@@ -378,7 +378,7 @@ function aplicarOnSubmit(){
 }
 
 $(document).ready(function(){
-    $('#radioGoogle').click();
+    //$('#radioGoogle').click();
 
     if ($('#inputTelefone').length){
         aplicarFocusIn();
