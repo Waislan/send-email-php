@@ -210,8 +210,8 @@ function backendFormulario(campos){
     }, function(retorno){
         switch(retorno){
             case 'true':
-                alert('Eviado com sucesso!');
-                window.location.href = 'https://ofertadeveiculos.com.br';
+                alert('Enviado com sucesso!');
+                window.location.href = 'sucesso.php'; // Quando for redirecionar para outro site, inclua o "https"
                 break;
             default:
                 mostrarEsconderSpinner(true);
@@ -223,11 +223,11 @@ function backendFormulario(campos){
 }
 
 function trataData(data) {
-    
-    var auxiliar = data.replaceAll('-', '/');
+
+    var auxiliar = data.replace('/-/g', '/');
 
     //console.log(auxiliar)
-    return data;
+    return auxiliar;
 }
 
 function aplicarOnSubmit(){

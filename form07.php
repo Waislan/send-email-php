@@ -46,7 +46,7 @@
 
             <div class="col-sm-12 col-md-6">
                 <label for="inputData">Data</label>
-                <input type="date" id="inputData" class="form-control estilo-input" max="2030-12-31" data-toggle="tooltip" title="Hooray!" required>
+                <input type="date" id="inputData" class="form-control estilo-input" max="2030-12-31" required>
             </div>
         </div>
 
