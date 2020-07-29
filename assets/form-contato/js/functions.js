@@ -211,12 +211,13 @@ function backendFormulario(campos){
         switch(retorno){
             case 'true':
                 alert('Enviado com sucesso!');
-                window.location.href = 'sucesso.php'; // Quando for redirecionar para outro site, inclua o "https"
+                //window.location.href = 'sucesso.php'; // Quando for redirecionar para outro site, inclua o "https"
+                location.reload();
                 break;
             default:
                 mostrarEsconderSpinner(true);
                 alert('Ops, houve um erro!');
-                //console.log(retorno);
+                console.log(retorno);
                 break;
         }
     })
