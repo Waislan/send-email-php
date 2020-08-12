@@ -23,11 +23,11 @@ try {
     $mail->setLanguage('pt_br', 'vendor/PHPMailer/language/');
     $mail->CharSet = 'UTF-8';
 
-    $mail->Username = ''; // gmail de do e-mail que envia
+    $mail->Username = ''; // gmail do e-mail que envia
     $mail->Password = ''; // senha de app gmail
     $mail->setFrom('', 'Sistema');
 
-    $mail->addAddress('contato@youmarketing.com.br', ''); // e-mail de quem recebe as mensagens do site
+    $mail->addAddress('', ''); // e-mail de quem recebe as mensagens do site
     $mail->isHTML(true);
     $mail->Subject = 'Novo Contato do Site';
     

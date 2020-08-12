@@ -210,15 +210,35 @@ function backendFormulario(campos){
     }, function(retorno){
         switch(retorno){
             case 'true':
+                /*
                 alert('Enviado com sucesso!');
+                location.reload();
+                */
+               console.log('primeiro deu certo');
+                break;
+            default:
+                mostrarEsconderSpinner(true);
+                console.log(retorno);
+                alert('Ops, houve um erro! (Código: 1)');
+                return false;
+        }
+    })
+
+    $.post('assets/form-contato/php/send-email-client.php', {
+        data: campos
+    }, function(retorno){
+        switch(retorno){
+            case 'true':
+                alert('Enviado com sucesso!');
+                console.log('segundo deu certo');
                 //window.location.href = 'sucesso.php'; // Quando for redirecionar para outro site, inclua o "https"
                 location.reload();
                 break;
             default:
                 mostrarEsconderSpinner(true);
-                alert('Ops, houve um erro!');
                 console.log(retorno);
-                break;
+                alert('Ops, houve um erro! (Código: 2)');
+                return false;
         }
     })
 }
